@@ -14,11 +14,9 @@
 .markItUp  {
 	margin:5px 0 5px 0;
 }
-.markItUpContainer  {
-	font:11px Verdana, Arial, Helvetica, sans-serif;
-}
+
 .markItUpEditor {
-	font:12px 'Courier New', Courier, monospace;
+
 	padding:5px;
 	height:320px;
 	clear:both;
