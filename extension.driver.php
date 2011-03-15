@@ -13,7 +13,7 @@
 					'website'		=> 'http://randb.com.au/',
 					'email'			=> 'nick@randb.com.au'
 				),
-				'description'	=> 'Sets the markItUp WYSIWYG editor on textareas'
+				'description'	=> 'Applies the markItUp WYSIWYG editor to textareas'
 	 		);
 		}
 		
