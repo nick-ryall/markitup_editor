@@ -1,1 +1,4 @@
-Install the extension as usual then choose either "Markdown" or "Textile" from the Textformatter dropdown. 
+Displays the markItUp Editor on any fields that use markdown or textile as a textformatter.
+
+Copy the folder 'markitup_editor" into your extensions folder. You will now have a new fieldset on the preferences page called "markItUp Editor". Choose either "Markdown" or "Textile".
+
