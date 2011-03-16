@@ -80,11 +80,11 @@
 			$page = $context['parent']->Page;
 			$textformatter = extension_markitup_editor::getFormatter();
 
-			$page->addStylesheetToHead(URL . '/extensions/markitup_editor/assets/skins/simple/style.css', 'screen', 10000, true);
-			$page->addStylesheetToHead(URL . '/extensions/markitup_editor/assets/sets/'.$textformatter.'/style.css', 'screen', 10001, true);
+			$page->addStylesheetToHead(URL . '/extensions/markitup_editor/assets/skin/markitup.skins.style.css', 'screen', 10000, true);
+			$page->addStylesheetToHead(URL . '/extensions/markitup_editor/assets/sets/'.$textformatter.'/markitup.set.style.css', 'screen', 10001, true);
 			
 			$page->addScriptToHead(URL . '/extensions/markitup_editor/assets/jquery.markitup.js', 10002, false);
-			$page->addScriptToHead(URL . '/extensions/markitup_editor/assets/sets/'.$textformatter.'/set.js', 10003, false);
+			$page->addScriptToHead(URL . '/extensions/markitup_editor/assets/sets/'.$textformatter.'/markitup.set.js', 10003, false);
 			
 			$page->addScriptToHead(URL . '/extensions/markitup_editor/assets/markitup_editor.publish.js', 10004, false);
 
