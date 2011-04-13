@@ -6,9 +6,9 @@
 	         	
 	         	$("textarea.markdown").markItUp(mySettings);
 	         	
-	         } else if ($(".textile").length) {
-	         
-	         	$(".textarea.markdown").markItUp(mySettings);
+	         } else if ($(".textileplus").length) {
+
+	         	$(".textarea.textileplus").markItUp(mySettings);
 	         }
 	              
 	    });
