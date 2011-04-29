@@ -8,7 +8,7 @@
 	         	
 	         } else if ($(".textileplus").length) {
 
-	         	$(".textarea.textileplus").markItUp(mySettings);
+	         	$("textarea.textileplus").markItUp(mySettings);
 	         }
 	              
 	    });
