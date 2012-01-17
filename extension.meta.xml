@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension id="markitup_editor" status="released" xmlns="http://symphony-cms.com/schemas/extension/1.0">
+	<name>markItUp Editor</name>
+	<description>Displays the [markItUp Editor](http://markitup.jaysalvat.com/home/) on any fields that use Markdown or Textile as a Text Formatter.</description>
+	<repo type="github">https://github.com/nick-ryall/markitup_editor</repo>
+	<types>
+		<type>Interface</type>
+	</types>
+	<authors>
+		<author>
+			<name github="nick-ryall" symphony="nickryall">Nick Ryall</name>
+		</author>
+	</authors>
+	<releases>
+		<release version="1.1" date="2012-01-17" min="2.2.0">
+			- Initial public release
+			- Update accessors for Symphony 2.2
+			- Update markitup to 1.1.6 (latest at time of release)
+			- Now applies Markdown/Textile formatters for variants of Markdown/Textile such as Markdown Extra
+			- Only appends assets to the Entry editor instead of all backend pages
+		</release>
+		<release version="1.0" date="2011-03-14" min="2.2.0">
+			- Initial internal build
+		</release>
+	</releases>
+</extension>
