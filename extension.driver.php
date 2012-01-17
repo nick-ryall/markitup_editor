@@ -6,8 +6,8 @@
 		public function about() {
 			return array(
 				'name'			=> 'markItUp Editor',
-				'version'		=> '1.0',
-				'release-date'	=> '2011-03-14',
+				'version'		=> '1.1',
+				'release-date'	=> '2012-01-17',
 				'author'		=> array(
 					'name'			=> 'Nick Ryall',
 					'website'		=> 'http://randb.com.au/',
@@ -16,15 +16,14 @@
 				'description'	=> 'Applies the markItUp WYSIWYG editor to textareas'
 	 		);
 		}
-		
+
 	/*-------------------------------------------------------------------------
 		Installation:
-	-------------------------------------------------------------------------*/		
-		
+	-------------------------------------------------------------------------*/
 
 		public function uninstall() {
-			$this->_Parent->Configuration->remove('markitup');
-			$this->_Parent->saveConfig();
+			Symphony::Configuration()->remove('markitup');
+			Administration::instance()->saveConfig();
 		}
 
 		public function getSubscribedDelegates() {
@@ -34,7 +33,6 @@
 					'delegate' => 'InitaliseAdminPageHead',
 					'callback' => 'appendAssets'
 				),
-
 				array(
 					'page'		=> '/system/preferences/',
 					'delegate'	=> 'AddCustomPreferenceFieldsets',
@@ -43,9 +41,8 @@
 			);
 		}
 
-		
 		public function getFormatter() {
-			return $this->_Parent->Configuration->get('textformatter', 'markitup');
+			return Symphony::Configuration()->get('textformatter', 'markitup');
 		}
 
 		public function appendPreferences($context) {
@@ -54,44 +51,42 @@
 			$group->appendChild(
 				new XMLElement('legend', 'markItUp Editor')
 			);
-			
+
 			$options = array(
-				array('Markdown',  General::Sanitize($this->getFormatter()) == 'Markdown'),
-				array('Textile',  General::Sanitize($this->getFormatter()) == 'Textile')
+				array('Markdown',  General::sanitize($this->getFormatter()) == 'Markdown'),
+				array('Textile',  General::sanitize($this->getFormatter()) == 'Textile')
 			);
 
 			$formatter = Widget::Label('Text Formatter');
 			$formatter->appendChild(Widget::select(
 				'settings[markitup][textformatter]', $options
-				
+
 			));
 			$group->appendChild($formatter);
 
 			$context['wrapper']->appendChild($group);
 		}
-	
-		
+
 	/*-------------------------------------------------------------------------
 		Utitilites:
 	-------------------------------------------------------------------------*/
-		
+
 		public function appendAssets($context) {
-			
-			$page = $context['parent']->Page;
-			$textformatter = extension_markitup_editor::getFormatter();
+			if($this->getFormatter() == '') return;
 
-			$page->addStylesheetToHead(URL . '/extensions/markitup_editor/assets/skin/markitup.skins.style.css', 'screen', 10000, true);
-			$page->addStylesheetToHead(URL . '/extensions/markitup_editor/assets/sets/'.$textformatter.'/markitup.set.style.css', 'screen', 10001, true);
-			
-			$page->addScriptToHead(URL . '/extensions/markitup_editor/assets/jquery.markitup.js', 10002, false);
-			$page->addScriptToHead(URL . '/extensions/markitup_editor/assets/sets/'.$textformatter.'/markitup.set.js', 10003, false);
-			
-			$page->addScriptToHead(URL . '/extensions/markitup_editor/assets/markitup_editor.publish.js', 10004, false);
+			$page = Administration::instance()->Page;
+			$callback = Symphony::Engine()->getPageCallback();
 
+			// Only append Assets if we are viewing an Entry.
+			if($page instanceof contentPublish && $callback['context']['page'] !== 'index') {
+				$textformatter = extension_markitup_editor::getFormatter();
+
+				$page->addStylesheetToHead(URL . '/extensions/markitup_editor/assets/skin/markitup.skins.style.css', 'screen', 10000, true);
+				$page->addStylesheetToHead(URL . '/extensions/markitup_editor/assets/sets/'.$textformatter.'/markitup.set.style.css', 'screen', 10001, true);
+
+				$page->addScriptToHead(URL . '/extensions/markitup_editor/assets/jquery.markitup.js', 10002, false);
+				$page->addScriptToHead(URL . '/extensions/markitup_editor/assets/sets/'.$textformatter.'/markitup.set.js', 10003, false);
+				$page->addScriptToHead(URL . '/extensions/markitup_editor/assets/markitup_editor.publish.js', 10004, false);
+			}
 		}
-
-
-
 	}
-
-?>
